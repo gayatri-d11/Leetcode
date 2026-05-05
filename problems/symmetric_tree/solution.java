@@ -15,25 +15,21 @@
  */
 class Solution {
     public boolean isSymmetric(TreeNode root) {
-         TreeNode A = root.left;
-         TreeNode B = root.right;
-         
-        return checkLeftRight( A,B) ;
+       TreeNode a = root.left;
+       TreeNode b = root.right;
+       return Symmetry(a,b);
     }
-    public Boolean checkLeftRight(TreeNode A,TreeNode B)   {
+       public Boolean Symmetry(TreeNode a , TreeNode b){
+        if(a == null && b== null){
+            return true;
+        }   
+        if(a==null || b== null){
+            return false;
+        }   
+        return (a.val == b.val && Symmetry(a.left ,b.right) && Symmetry(a.right ,b.left));
+        
+        
+            }
 
-    if(A==null && B==null) return true;
-    if(A==null || B==null){
-
-     return false;
-    }
     
-      return (A.val==B.val)
-                 && checkLeftRight(A.left,B.right) 
-                && checkLeftRight(A.right,B.left) ;
-       
-       
-
     }
-    
-}
