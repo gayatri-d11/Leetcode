@@ -15,21 +15,33 @@
  */
 class Solution {
     public boolean isSymmetric(TreeNode root) {
-       TreeNode a = root.left;
-       TreeNode b = root.right;
-       return Symmetry(a,b);
-    }
-       public Boolean Symmetry(TreeNode a , TreeNode b){
-        if(a == null && b== null){
-            return true;
-        }   
-        if(a==null || b== null){
-            return false;
-        }   
-        return (a.val == b.val && Symmetry(a.left ,b.right) && Symmetry(a.right ,b.left));
-        
-        
-            }
+        Queue<TreeNode> q= new LinkedList<>();
+        q.add(root.left);
+        q.add(root.right); 
 
-    
+        while(!q.isEmpty()){
+         TreeNode one = q.poll();
+         TreeNode two = q.poll();
+
+        
+
+         if(one == null && two==null){
+            continue;
+         }
+         if(one ==null || two ==null){
+            return false ;
+         }
+          if(one.val != two.val){
+          return false;
+         }
+
+         q.add(one.left);
+         q.add(two.right);
+         q.add(one.right);
+         q.add(two.left);
+
+
+        } 
+        return true;       
     }
+}
