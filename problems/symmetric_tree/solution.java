@@ -15,33 +15,29 @@
  */
 class Solution {
     public boolean isSymmetric(TreeNode root) {
-        Queue<TreeNode> q= new LinkedList<>();
-        q.add(root.left);
-        q.add(root.right); 
+if(root==null){
+    return true;
+}
 
-        while(!q.isEmpty()){
-         TreeNode one = q.poll();
-         TreeNode two = q.poll();
-
+TreeNode p = root.left;
+TreeNode q= root.right;
+return isSameTree(p,q);
         
+    }
+     public boolean isSameTree(TreeNode p, TreeNode q) {
+        if(p==null && q==null){
+            return true;
+        }
+         if(p==null || q==null){
+            return false;
+        }
 
-         if(one == null && two==null){
-            continue;
-         }
-         if(one ==null || two ==null){
-            return false ;
-         }
-          if(one.val != two.val){
-          return false;
-         }
+        if(p.val != q.val) return false;
 
-         q.add(one.left);
-         q.add(two.right);
-         q.add(one.right);
-         q.add(two.left);
+        boolean a = isSameTree(p.left,q.right);
+        boolean b = isSameTree(p.right,q.left);
 
-
-        } 
-        return true;       
+        return a&&b;
+        
     }
 }
