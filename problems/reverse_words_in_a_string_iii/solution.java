@@ -9,3 +9,7 @@ class Solution {
        return String.join(" ",str);
     }
 }
+//logic :
+//as we cant change the string in the array :str[]
+//we create a container ,variable called sb , take a string word from str array and reversed it (changed the order) convert into string again 
+//finally join all the str array elemnts got the answer
